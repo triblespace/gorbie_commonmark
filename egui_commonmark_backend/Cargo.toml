@@ -2,7 +2,7 @@
 name = "egui_commonmark_backend"
 authors = ["Erlend Walstad"]
 
-version = "0.21.0"
+version.workspace = true
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
