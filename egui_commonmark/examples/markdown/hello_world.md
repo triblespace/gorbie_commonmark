@@ -11,7 +11,7 @@ A *bunch* ~~of~~ __different__ `text` styles.
 | *Bb*         |
 | Cc           |
 
-[Link to repo](https://github.com/lampsitter/egui_commonmark)
+[Link to repo](https://github.com/triblespace/gorbie_commonmark)
 
 ```rs
 let mut vec = Vec::new();

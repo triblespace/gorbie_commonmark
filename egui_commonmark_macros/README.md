@@ -1,12 +1,12 @@
 # A commonmark viewer for [egui](https://github.com/emilk/egui)
 
-[![Crate](https://img.shields.io/crates/v/egui_commonmark_macros.svg)](https://crates.io/crates/egui_commonmark_macros)
-[![Documentation](https://docs.rs/egui_commonmark_macros/badge.svg)](https://docs.rs/egui_commonmark_macros)
+[![Crate](https://img.shields.io/crates/v/gorbie-commonmark-macros.svg)](https://crates.io/crates/gorbie-commonmark-macros)
+[![Documentation](https://docs.rs/gorbie-commonmark-macros/badge.svg)](https://docs.rs/gorbie-commonmark-macros)
 
-<img src="https://raw.githubusercontent.com/lampsitter/egui_commonmark/master/assets/example-v3.png" alt="showcase" width=280/>
+<img src="https://raw.githubusercontent.com/triblespace/gorbie_commonmark/main/assets/example-v3.png" alt="showcase" width=280/>
 
-This crate is `egui_commonmark`'s compile time variant. It is recommended to use
-this crate through `egui_commonmark` by enabling the `macros` feature.
+This crate is `gorbie_commonmark`'s compile time variant. It is recommended to use
+this crate through `gorbie_commonmark` by enabling the `macros` feature.
 
 
 ## Usage
@@ -14,7 +14,7 @@ this crate through `egui_commonmark` by enabling the `macros` feature.
 In Cargo.toml:
 
 ```toml
-egui_commonmark = "0.22"
+gorbie-commonmark = "0.22"
 # Specify what image formats you want to use
 image = { version = "0.25", default-features = false, features = ["png"] }
 ```
@@ -22,7 +22,7 @@ image = { version = "0.25", default-features = false, features = ["png"] }
 ### Example
 
 ```rust
-use egui_commonmark::{CommonMarkCache, commonmark};
+use gorbie_commonmark::{CommonMarkCache, commonmark};
 let mut cache = CommonMarkCache::default();
 let _response = commonmark!(ui, &mut cache, "# ATX Heading Level 1");
 ```
@@ -32,7 +32,7 @@ Alternatively you can embed a file
 ### Example
 
 ```rust
-use egui_commonmark::{CommonMarkCache, commonmark_str};
+use gorbie_commonmark::{CommonMarkCache, commonmark_str};
 let mut cache = CommonMarkCache::default();
 commonmark_str!(ui, &mut cache, "content.md");
 ```

@@ -505,10 +505,10 @@ impl CommonMarkCache {
     /// # });
     /// ```
     ///
-    /// The main difference is that link hooks allows egui_commonmark to check for link hooks
-    /// while rendering. Normally when hovering over a link, egui_commonmark will display the full
+    /// The main difference is that link hooks allows gorbie_commonmark to check for link hooks
+    /// while rendering. Normally when hovering over a link, gorbie_commonmark will display the full
     /// url. With link hooks this feature is disabled, but to do that all hooks must be known.
-    // Works when displayed through egui_commonmark
+    // Works when displayed through gorbie_commonmark
     #[allow(rustdoc::broken_intra_doc_links)]
     pub fn add_link_hook<S: Into<String>>(&mut self, name: S) {
         self.link_hooks.insert(name.into(), false);

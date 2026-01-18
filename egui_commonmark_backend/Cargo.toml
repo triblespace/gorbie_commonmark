@@ -1,6 +1,6 @@
 [package]
-name = "egui_commonmark_backend"
-authors = ["Erlend Walstad"]
+name = "gorbie-commonmark-backend"
+authors = ["Erlend Walstad", "Jan-Paul Bultmann <jp@bultmann.eu>"]
 
 version.workspace = true
 edition.workspace = true
@@ -8,11 +8,11 @@ license.workspace = true
 rust-version.workspace = true
 repository.workspace = true
 
-description = "Shared code for egui_commonmark and egui_commonmark_macros"
+description = "Shared code for gorbie_commonmark and gorbie_commonmark_macros"
 keywords = ["commonmark", "egui"]
 categories = ["gui"]
 readme = "README.md"
-documentation = "https://docs.rs/egui_commonmark_backend"
+documentation = "https://docs.rs/gorbie-commonmark-backend"
 include = ["**/*.rs", "LICENSE-MIT", "LICENSE-APACHE", "Cargo.toml"]
 
 [dependencies]

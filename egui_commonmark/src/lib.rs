@@ -3,7 +3,7 @@
 //! # Example
 //!
 //! ```
-//! # use egui_commonmark::*;
+//! # use gorbie_commonmark::*;
 //! # use egui::__run_test_ui;
 //! let markdown =
 //! r"# Hello world
@@ -46,8 +46,8 @@
 //!
 //! ## Example
 //!
-//! ```
-//! use egui_commonmark::{CommonMarkCache, commonmark};
+//! ```rust,ignore
+//! use gorbie_commonmark::{CommonMarkCache, commonmark};
 //! # egui::__run_test_ui(|ui| {
 //! let mut cache = CommonMarkCache::default();
 //! let _response = commonmark!(ui, &mut cache, "# ATX Heading Level 1");
@@ -60,7 +60,7 @@
 //! ## Example
 //!
 //! ```rust,ignore
-//! use egui_commonmark::{CommonMarkCache, commonmark_str};
+//! use gorbie_commonmark::{CommonMarkCache, commonmark_str};
 //! # egui::__run_test_ui(|ui| {
 //! let mut cache = CommonMarkCache::default();
 //! commonmark_str!(ui, &mut cache, "content.md");
@@ -68,7 +68,7 @@
 //! ```
 //!
 //! For more information check out the documentation for
-//! [egui_commonmark_macros](https://docs.rs/crate/egui_commonmark_macros/latest)
+//! [gorbie_commonmark_macros](https://docs.rs/gorbie-commonmark-macros)
 #![cfg_attr(feature = "document-features", doc = "# Features")]
 #![cfg_attr(feature = "document-features", doc = document_features::document_features!())]
 
@@ -76,20 +76,20 @@ use egui::{self, Id};
 
 mod parsers;
 
-pub use egui_commonmark_backend::RenderHtmlFn;
-pub use egui_commonmark_backend::RenderMathFn;
-pub use egui_commonmark_backend::alerts::{Alert, AlertBundle};
-pub use egui_commonmark_backend::misc::CommonMarkCache;
+pub use gorbie_commonmark_backend::RenderHtmlFn;
+pub use gorbie_commonmark_backend::RenderMathFn;
+pub use gorbie_commonmark_backend::alerts::{Alert, AlertBundle};
+pub use gorbie_commonmark_backend::misc::CommonMarkCache;
 
 #[cfg(feature = "macros")]
-pub use egui_commonmark_macros::*;
+pub use gorbie_commonmark_macros::*;
 
 #[cfg(feature = "macros")]
 // Do not rely on this directly!
 #[doc(hidden)]
-pub use egui_commonmark_backend;
+pub use gorbie_commonmark_backend;
 
-use egui_commonmark_backend::*;
+use gorbie_commonmark_backend::*;
 
 #[derive(Debug, Default)]
 pub struct CommonMarkViewer<'f> {
@@ -133,7 +133,7 @@ impl<'f> CommonMarkViewer<'f> {
     ///
     /// # Example
     /// ```
-    /// # use egui_commonmark::CommonMarkViewer;
+    /// # use gorbie_commonmark::CommonMarkViewer;
     /// CommonMarkViewer::new().default_implicit_uri_scheme("https://example.org/");
     /// ```
     pub fn default_implicit_uri_scheme<S: Into<String>>(mut self, scheme: S) -> Self {
@@ -183,7 +183,7 @@ impl<'f> CommonMarkViewer<'f> {
     ///
     /// ```
     /// # use std::{cell::RefCell, collections::HashMap, rc::Rc, sync::Arc};
-    /// # use egui_commonmark::CommonMarkViewer;
+    /// # use gorbie_commonmark::CommonMarkViewer;
     /// let mut math_images = Rc::new(RefCell::new(HashMap::new()));
     /// CommonMarkViewer::new()
     ///     .render_math_fn(Some(&move |ui, math, inline| {
@@ -229,7 +229,7 @@ impl<'f> CommonMarkViewer<'f> {
         cache: &mut CommonMarkCache,
         text: &str,
     ) -> egui::InnerResponse<()> {
-        egui_commonmark_backend::prepare_show(cache, ui.ctx());
+        gorbie_commonmark_backend::prepare_show(cache, ui.ctx());
 
         let (response, _) = parsers::pulldown::CommonMarkViewerInternal::new().show(
             ui,
@@ -252,7 +252,7 @@ impl<'f> CommonMarkViewer<'f> {
         text: &mut String,
     ) -> egui::InnerResponse<()> {
         self.options.mutable = true;
-        egui_commonmark_backend::prepare_show(cache, ui.ctx());
+        gorbie_commonmark_backend::prepare_show(cache, ui.ctx());
 
         let (mut inner_response, checkmark_events) =
             parsers::pulldown::CommonMarkViewerInternal::new().show(
@@ -299,7 +299,7 @@ impl<'f> CommonMarkViewer<'f> {
         cache: &mut CommonMarkCache,
         text: &str,
     ) {
-        egui_commonmark_backend::prepare_show(cache, ui.ctx());
+        gorbie_commonmark_backend::prepare_show(cache, ui.ctx());
         parsers::pulldown::CommonMarkViewerInternal::new().show_scrollable(
             Id::new(source_id),
             ui,

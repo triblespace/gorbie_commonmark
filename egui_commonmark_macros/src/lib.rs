@@ -1,9 +1,9 @@
 //! Compile time evaluation of markdown that generates egui widgets
 //!
 //! It is recommended to use this crate through the parent crate
-//! [egui_commonmark](https://docs.rs/crate/egui_commonmark/latest).
+//! [gorbie_commonmark](https://docs.rs/gorbie-commonmark).
 //! If you for some reason don't want to use it you must also import
-//! [egui_commonmark_backend](https://docs.rs/crate/egui_commonmark_backend/latest)
+//! [gorbie_commonmark_backend](https://docs.rs/gorbie-commonmark-backend)
 //! directly from your crate to get access to `CommonMarkCache` and internals that
 //! the macros require for the final generated code.
 //!
@@ -17,9 +17,9 @@
 //! #### Example
 //!
 //! ```
-//! # // If used through egui_commonmark the backend crate does not need to be relied upon
-//! # use egui_commonmark_backend::CommonMarkCache;
-//! # use egui_commonmark_macros::commonmark;
+//! # // If used through gorbie_commonmark the backend crate does not need to be relied upon
+//! # use gorbie_commonmark_backend::CommonMarkCache;
+//! # use gorbie_commonmark_macros::commonmark;
 //! # egui::__run_test_ui(|ui| {
 //! let mut cache = CommonMarkCache::default();
 //! let _response = commonmark!(ui, &mut cache, "# ATX Heading Level 1");
@@ -39,8 +39,8 @@
 // Unfortunately can't depend on an actual file in the doc test so it must be
 // disabled
 //! ```rust,ignore
-//! # use egui_commonmark_backend::CommonMarkCache;
-//! # use egui_commonmark_macros::commonmark_str;
+//! # use gorbie_commonmark_backend::CommonMarkCache;
+//! # use gorbie_commonmark_macros::commonmark_str;
 //! # egui::__run_test_ui(|ui| {
 //! let mut cache = CommonMarkCache::default();
 //! commonmark_str!(ui, &mut cache, "foo.md");
@@ -54,7 +54,7 @@
 //!
 //! ## Limitations
 //!
-//! Compared to it's runtime counterpart egui_commonmark it currently does not
+//! Compared to it's runtime counterpart gorbie_commonmark it currently does not
 //! offer customization. This is something that will be addressed eventually once
 //! a good API has been chosen.
 //!
@@ -156,12 +156,12 @@ pub fn commonmark_str(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 }
 
 fn resolve_backend_crate_import() -> proc_macro2::TokenStream {
-    // The purpose of this is to ensure that when used through egui_commonmark
-    // the generated code can always find egui_commonmark_backend without the
+    // The purpose of this is to ensure that when used through gorbie_commonmark
+    // the generated code can always find gorbie_commonmark_backend without the
     // user having to import themselves.
     //
     // There are other ways to do this that does not depend on an external crate
-    // such as exposing a feature flag in this crate that egui_commonmark can set.
+    // such as exposing a feature flag in this crate that gorbie_commonmark can set.
     // This works for users, however it is a pain to use in this workspace as
     // the macro tests won't work when run from the workspace directory. So instead
     // they must be run from this crate's workspace. I don't want to rely on that mess
@@ -170,15 +170,15 @@ fn resolve_backend_crate_import() -> proc_macro2::TokenStream {
     //
     // With all that said the resolution is the following:
     //
-    // Try egui_commonmark_backend first. This ensures that the tests will run from
-    // the main workspace despite egui_commonmark being present. However if only
-    // egui_commonmark is present then a `use egui_commonmark::egui_commonmark_backend;`
+    // Try gorbie_commonmark_backend first. This ensures that the tests will run from
+    // the main workspace despite gorbie_commonmark being present. However if only
+    // gorbie_commonmark is present then a `use gorbie_commonmark::gorbie_commonmark_backend;`
     // will be inserted into the generated code.
     //
     // If none of that work's then the user is missing some crates
 
-    let backend_crate = proc_macro_crate::crate_name("egui_commonmark_backend");
-    let main_crate = proc_macro_crate::crate_name("egui_commonmark");
+    let backend_crate = proc_macro_crate::crate_name("gorbie_commonmark_backend");
+    let main_crate = proc_macro_crate::crate_name("gorbie_commonmark");
 
     if backend_crate.is_ok() {
         proc_macro2::TokenStream::new()
@@ -190,7 +190,7 @@ fn resolve_backend_crate_import() -> proc_macro2::TokenStream {
 
         let crate_name_lit = proc_macro2::Ident::new(&crate_name, proc_macro2::Span::call_site());
         quote::quote!(
-            use #crate_name_lit::egui_commonmark_backend;
+            use #crate_name_lit::gorbie_commonmark_backend;
         )
     } else {
         proc_macro2::TokenStream::new()

@@ -6,11 +6,11 @@ macro_rules! m {
         $ui.label("Label!");
         #[cfg(feature = "macros")]
         {
-            egui_commonmark_macros::commonmark!($ui, &mut $cache, $a);
+            gorbie_commonmark_macros::commonmark!($ui, &mut $cache, $a);
         }
         #[cfg(not(feature = "macros"))]
         {
-            egui_commonmark::CommonMarkViewer::new().show($ui, &mut $cache, $a);
+            gorbie_commonmark::CommonMarkViewer::new().show($ui, &mut $cache, $a);
         }
         )*
     };
@@ -25,7 +25,7 @@ const WINDOW_NAME: &str = "Mixed egui and markdown (normal version)";
 // Ensure that there are no newlines that should not be present when mixing markdown
 // and egui widgets.
 fn main() -> eframe::Result<()> {
-    let mut cache = egui_commonmark::CommonMarkCache::default();
+    let mut cache = gorbie_commonmark::CommonMarkCache::default();
 
     eframe::run_simple_native(WINDOW_NAME, Default::default(), move |ctx, _frame| {
         egui::CentralPanel::default().show(ctx, |ui| {
@@ -89,7 +89,7 @@ item a4 | item b4
  ![Ferris](egui_commonmark/examples/cuddlyferris.png)
                         "#,
                     r#"
-[Link to repo](https://github.com/lampsitter/egui_commonmark)
+[Link to repo](https://github.com/triblespace/gorbie_commonmark)
                         "#,
                     r#"
 Term 1

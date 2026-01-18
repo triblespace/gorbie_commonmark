@@ -582,46 +582,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "egui_commonmark"
-version = "0.21.1"
-dependencies = [
- "document-features",
- "eframe",
- "egui",
- "egui_commonmark_backend",
- "egui_commonmark_macros",
- "egui_extras",
- "image",
- "pulldown-cmark",
-]
-
-[[package]]
-name = "egui_commonmark_backend"
-version = "0.21.0"
-dependencies = [
- "data-url",
- "egui",
- "egui_extras",
- "pulldown-cmark",
- "syntect",
-]
-
-[[package]]
-name = "egui_commonmark_macros"
-version = "0.21.1"
-dependencies = [
- "document-features",
- "egui",
- "egui_commonmark_backend",
- "proc-macro-crate",
- "proc-macro2",
- "pulldown-cmark",
- "quote",
- "syn",
- "trybuild",
-]
-
-[[package]]
 name = "egui_extras"
 version = "0.33.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -988,6 +948,46 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2c4ee00b289aba7a9e5306d57c2d05499b2e5dc427f84ac708bd2c090212cf3e"
 dependencies = [
  "gl_generator",
+]
+
+[[package]]
+name = "gorbie-commonmark"
+version = "0.22.0"
+dependencies = [
+ "document-features",
+ "eframe",
+ "egui",
+ "egui_extras",
+ "gorbie-commonmark-backend",
+ "gorbie-commonmark-macros",
+ "image",
+ "pulldown-cmark",
+]
+
+[[package]]
+name = "gorbie-commonmark-backend"
+version = "0.22.0"
+dependencies = [
+ "data-url",
+ "egui",
+ "egui_extras",
+ "pulldown-cmark",
+ "syntect",
+]
+
+[[package]]
+name = "gorbie-commonmark-macros"
+version = "0.22.0"
+dependencies = [
+ "document-features",
+ "egui",
+ "gorbie-commonmark-backend",
+ "proc-macro-crate",
+ "proc-macro2",
+ "pulldown-cmark",
+ "quote",
+ "syn",
+ "trybuild",
 ]
 
 [[package]]

@@ -1,9 +1,9 @@
 # A commonmark viewer for [egui](https://github.com/emilk/egui)
 
-[![Crate](https://img.shields.io/crates/v/egui_commonmark_backend.svg)](https://crates.io/crates/egui_commonmark_backend)
+[![Crate](https://img.shields.io/crates/v/gorbie-commonmark-backend.svg)](https://crates.io/crates/gorbie-commonmark-backend)
 
-This contains shared code between the crates `egui_commonmark` and `egui_commonmark_macros`.
-See [egui_commonmark](https://github.com/lampsitter/egui_commonmark) as a starting point.
+This contains shared code between the crates `gorbie_commonmark` and `gorbie_commonmark_macros`.
+See [gorbie_commonmark](https://github.com/triblespace/gorbie_commonmark) as a starting point.
 
 ## License
 

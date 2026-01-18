@@ -7,7 +7,7 @@
 //! Shows a simple way to use the crate to implement a book like view.
 
 use eframe::egui;
-use egui_commonmark::*;
+use gorbie_commonmark::*;
 
 struct Page {
     name: String,

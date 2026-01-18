@@ -1,4 +1,4 @@
-//! Shared code for egui_commonmark and egui_commonmark_macro. Breaking changes will happen and
+//! Shared code for gorbie_commonmark and gorbie_commonmark_macro. Breaking changes will happen and
 //! should ideally not be relied upon. Only items that can been seen in this documentation
 //! can be safely used directly.
 
@@ -23,7 +23,7 @@ pub use {
     misc::{CodeBlock, CommonMarkOptions, Image, Link, prepare_show},
 };
 
-// The only struct that is allowed to use directly. (If one does not need egui_commonmark)
+// The only struct that is allowed to use directly. (If one does not need gorbie_commonmark)
 pub use misc::CommonMarkCache;
 
 /// Takes [`egui::Ui`], the math text to be rendered and whether it is inline

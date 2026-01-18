@@ -1,9 +1,12 @@
 # A commonmark viewer for [egui](https://github.com/emilk/egui)
 
-[![Crate](https://img.shields.io/crates/v/egui_commonmark.svg)](https://crates.io/crates/egui_commonmark)
-[![Documentation](https://docs.rs/egui_commonmark/badge.svg)](https://docs.rs/egui_commonmark)
+[![Crate](https://img.shields.io/crates/v/gorbie-commonmark.svg)](https://crates.io/crates/gorbie-commonmark)
+[![Documentation](https://docs.rs/gorbie-commonmark/badge.svg)](https://docs.rs/gorbie-commonmark)
 
-<img src="https://raw.githubusercontent.com/lampsitter/egui_commonmark/master/assets/example-v4.png" alt="showcase" width=280/>
+<img src="https://raw.githubusercontent.com/triblespace/gorbie_commonmark/main/assets/example-v4.png" alt="showcase" width=280/>
+
+This is a fork of [egui_commonmark](https://github.com/lampsitter/egui_commonmark) to customize the
+appearance so it better matches the GORBIE visual style.
 
 While this crate's main focus is commonmark, it also supports a subset of
 Github's markdown syntax: tables, strikethrough, tasklists and footnotes.
@@ -13,13 +16,13 @@ Github's markdown syntax: tables, strikethrough, tasklists and footnotes.
 In Cargo.toml:
 
 ```toml
-egui_commonmark = "0.22"
+gorbie-commonmark = "0.22"
 # Specify what image formats you want to use
 image = { version = "0.25", default-features = false, features = ["png"] }
 ```
 
 ```rust
-use egui_commonmark::*;
+use gorbie_commonmark::*;
 let markdown =
 r"# Hello world
 
@@ -40,7 +43,7 @@ This will do the parsing of the markdown at compile time and output egui widgets
 ### Example
 
 ```rust
-use egui_commonmark::{CommonMarkCache, commonmark};
+use gorbie_commonmark::{CommonMarkCache, commonmark};
 let mut cache = CommonMarkCache::default();
 let _response = commonmark!(ui, &mut cache, "# ATX Heading Level 1");
 ```
@@ -50,7 +53,7 @@ Alternatively you can embed a file
 ### Example
 
 ```rust
-use egui_commonmark::{CommonMarkCache, commonmark_str};
+use gorbie_commonmark::{CommonMarkCache, commonmark_str};
 let mut cache = CommonMarkCache::default();
 commonmark_str!(ui, &mut cache, "content.md");
 ```
@@ -69,7 +72,7 @@ commonmark_str!(ui, &mut cache, "content.md");
 ## Examples
 
 For an easy intro check out the `hello_world` example. To see all the different
-features egui_commonmark has to offer check out the `book` example.
+features gorbie_commonmark has to offer check out the `book` example.
 
 ## FAQ
 

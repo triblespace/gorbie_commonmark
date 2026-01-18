@@ -2,7 +2,7 @@
 //! is light. `cargo r --example show_mut -- dark`
 
 use eframe::egui;
-use egui_commonmark::*;
+use gorbie_commonmark::*;
 
 struct App {
     cache: CommonMarkCache,
@@ -60,7 +60,7 @@ fn main() -> eframe::Result {
 const EXAMPLE_TEXT: &str = "
 # Todo list
 - [x] Exist
-- [ ] Visit [`egui_commonmark` repo](https://github.com/lampsitter/egui_commonmark)
+- [ ] Visit [`gorbie_commonmark` repo](https://github.com/triblespace/gorbie_commonmark)
 - [ ] Notice how the top markdown text changes in response to clicking the checkmarks.
     - [ ] Make up your own list items, by using the editor on the top.
 ";

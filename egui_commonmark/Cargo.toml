@@ -1,6 +1,6 @@
 [package]
-name = "egui_commonmark"
-authors = ["Erlend Walstad"]
+name = "gorbie-commonmark"
+authors = ["Erlend Walstad", "Jan-Paul Bultmann <jp@bultmann.eu>"]
 
 version.workspace = true
 edition.workspace = true
@@ -12,12 +12,12 @@ description = "Commonmark viewer for egui"
 keywords = ["commonmark", "egui"]
 categories = ["gui"]
 readme = "README.md"
-documentation = "https://docs.rs/egui_commonmark"
+documentation = "https://docs.rs/gorbie-commonmark"
 include = ["src/**/*.rs", "LICENSE-MIT", "LICENSE-APACHE", "Cargo.toml"]
 
 [dependencies]
-egui_commonmark_backend = { workspace = true }
-egui_commonmark_macros = { workspace = true, optional = true }
+gorbie_commonmark_backend = { workspace = true }
+gorbie_commonmark_macros = { workspace = true, optional = true }
 
 egui_extras = { workspace = true }
 egui = { workspace = true }
@@ -30,24 +30,20 @@ pulldown-cmark = { workspace = true }
 default = ["load-images", "pulldown_cmark"]
 
 ## Enable proc macros for compile time generation of egui widgets from markdown
-macros = [
-    "dep:egui_commonmark_macros",
-]
+macros = ["dep:gorbie_commonmark_macros"]
 
 ## Builds upon the `macros` feature. Enables tracking of markdown files to recompile
 ## when their content changes. Uses nightly features
-nightly = ["macros", "egui_commonmark_macros/nightly"]
+nightly = ["macros", "gorbie_commonmark_macros/nightly"]
 
 # For internal debugging use only!
-dump-macro = ["egui_commonmark_macros/dump-macro"]
+dump-macro = ["gorbie_commonmark_macros/dump-macro"]
 
 ## No-op feature
 pulldown_cmark = []
 
 ## Syntax highlighting for code blocks using syntect
-better_syntax_highlighting = [
-    "egui_commonmark_backend/better_syntax_highlighting",
-]
+better_syntax_highlighting = ["gorbie_commonmark_backend/better_syntax_highlighting"]
 
 ## Enable loading of images. Make sure to also opt in to what image format you need
 ## through the image crate.
@@ -67,7 +63,7 @@ fetch = ["egui_extras/http"]
 ## in the background.
 ##
 ## Currently this does not support wasm.
-embedded_image = ["egui_commonmark_backend/embedded_image"]
+embedded_image = ["gorbie_commonmark_backend/embedded_image"]
 
 [dev-dependencies]
 eframe = { version = "0.33", default-features = false, features = [
@@ -78,7 +74,11 @@ eframe = { version = "0.33", default-features = false, features = [
 ] }
 
 image = { version = "0.25", default-features = false, features = ["png"] }
-egui_commonmark_macros = { workspace = true } # Tests won't build otherswise
+gorbie_commonmark_macros = { workspace = true } # Tests won't build otherswise
 
 [package.metadata.docs.rs]
 features = ["better_syntax_highlighting", "document-features", "macros"]
+
+[[example]]
+name = "macros"
+required-features = ["macros"]

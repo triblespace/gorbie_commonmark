@@ -7,7 +7,7 @@
 //! An easy way to visualize rendered markdown interactively
 
 use eframe::egui;
-use egui_commonmark::*;
+use gorbie_commonmark::*;
 
 struct App {
     cache: CommonMarkCache,

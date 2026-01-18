@@ -1,10 +1,10 @@
 use egui::__run_test_ui;
-use egui_commonmark_macros::commonmark_str;
+use gorbie_commonmark_macros::commonmark_str;
 
 // Testing all the different examples should give fairly good coverage
 fn main() {
     __run_test_ui(|ui| {
-        let mut cache = egui_commonmark_backend::CommonMarkCache::default();
+        let mut cache = gorbie_commonmark_backend::CommonMarkCache::default();
         commonmark_str!(
             ui,
             &mut cache,

@@ -1,6 +1,6 @@
 [package]
-name = "egui_commonmark_macros"
-authors = ["Erlend Walstad"]
+name = "gorbie-commonmark-macros"
+authors = ["Erlend Walstad", "Jan-Paul Bultmann <jp@bultmann.eu>"]
 
 version.workspace = true
 edition.workspace = true
@@ -12,7 +12,7 @@ description = "Embed markdown directly into the binary as egui widgets"
 keywords = ["commonmark", "egui"]
 categories = ["gui"]
 readme = "README.md"
-documentation = "https://docs.rs/egui_commonmark_macros"
+documentation = "https://docs.rs/gorbie-commonmark-macros"
 include = ["src/**/*.rs", "LICENSE-MIT", "LICENSE-APACHE", "Cargo.toml"]
 
 
@@ -26,7 +26,7 @@ proc-macro2 = { version = "1.0", default-features = false }
 
 pulldown-cmark = { workspace = true, default-features = false }
 
-egui_commonmark_backend = { workspace = true }
+gorbie_commonmark_backend = { workspace = true }
 egui = { workspace = true }
 
 document-features = { workspace = true, optional = true }

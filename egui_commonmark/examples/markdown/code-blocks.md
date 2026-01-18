@@ -1,7 +1,7 @@
 # Code blocks
 
 ```rs
-use egui_commonmark::*;
+use gorbie_commonmark::*;
 let markdown =
 r"# Hello world
 
@@ -17,7 +17,7 @@ The `better_syntax_highlighting` feature does not have toml highlighting by
 default. It will therefore fallback to default highlighting.
 
 ```toml
-egui_commonmark = "0.10"
+gorbie-commonmark = "0.22"
 image = { version = "0.24", default-features = false, features = ["png"] }
 ```
 

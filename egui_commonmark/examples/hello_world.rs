@@ -5,7 +5,7 @@
 //! is system theme. `cargo r --features better_syntax_highlighting,svg,fetch -- dark`
 
 use eframe::egui;
-use egui_commonmark::*;
+use gorbie_commonmark::*;
 
 struct App {
     cache: CommonMarkCache,

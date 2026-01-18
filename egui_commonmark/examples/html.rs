@@ -2,7 +2,7 @@
 //! is light. `cargo r --example html -- dark`
 
 use eframe::egui;
-use egui_commonmark::*;
+use gorbie_commonmark::*;
 use std::cell::RefCell;
 use std::rc::Rc;
 
