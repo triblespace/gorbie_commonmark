@@ -16,7 +16,7 @@ Github's markdown syntax: tables, strikethrough, tasklists and footnotes.
 In Cargo.toml:
 
 ```toml
-gorbie-commonmark = "0.22"
+gorbie-commonmark = "0.22.1"
 # Specify what image formats you want to use
 image = { version = "0.25", default-features = false, features = ["png"] }
 ```

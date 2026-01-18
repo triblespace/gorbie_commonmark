@@ -1,6 +1,14 @@
-# egui_commonmark changelog
+# gorbie-commonmark changelog
 
 ## Unreleased
+
+## 0.22.1 - 2026-01-18
+
+### Changed
+
+- Add custom copy/check icon rendering for code blocks.
+- Use the IosevkaGorbieBold font for strong text.
+- Round markdown images with a 16px corner radius and keep the outline.
 
 ## 0.22.0 - 2025-10-09
 
@@ -350,4 +358,3 @@ An explicit dependency update might be needed to use egui 0.22: `cargo update -p
 
 - No longer panic upon unknown syntax theme.
 - Fixed incorrect line endings within headings.
-

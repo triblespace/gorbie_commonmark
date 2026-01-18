@@ -17,7 +17,7 @@ The `better_syntax_highlighting` feature does not have toml highlighting by
 default. It will therefore fallback to default highlighting.
 
 ```toml
-gorbie-commonmark = "0.22"
+gorbie-commonmark = "0.22.1"
 image = { version = "0.24", default-features = false, features = ["png"] }
 ```
 

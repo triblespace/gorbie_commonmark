@@ -952,7 +952,7 @@ dependencies = [
 
 [[package]]
 name = "gorbie-commonmark"
-version = "0.22.0"
+version = "0.22.1"
 dependencies = [
  "document-features",
  "eframe",
@@ -966,7 +966,7 @@ dependencies = [
 
 [[package]]
 name = "gorbie-commonmark-backend"
-version = "0.22.0"
+version = "0.22.1"
 dependencies = [
  "data-url",
  "egui",
@@ -977,7 +977,7 @@ dependencies = [
 
 [[package]]
 name = "gorbie-commonmark-macros"
-version = "0.22.0"
+version = "0.22.1"
 dependencies = [
  "document-features",
  "egui",
