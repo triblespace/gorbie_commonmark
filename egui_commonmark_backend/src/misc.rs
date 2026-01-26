@@ -244,19 +244,41 @@ impl Image {
         let corner_radius = egui::CornerRadius::same(16);
         let stroke = ui.visuals().widgets.noninteractive.bg_stroke;
 
-        let response = ui.add(
-            egui::Image::from_uri(&self.uri)
-                .fit_to_original_size(1.0)
-                .max_width(options.max_width(ui))
-                .corner_radius(corner_radius),
-        );
+        let image = egui::Image::from_uri(&self.uri)
+            .fit_to_original_size(1.0)
+            .max_width(options.max_width(ui))
+            .corner_radius(corner_radius)
+            .show_loading_spinner(false);
+        let tlr = image.load_for_size(ui.ctx(), ui.available_size());
+        let image_source_size = tlr.as_ref().ok().and_then(|t| t.size());
+        let placeholder_size = image_placeholder_size(ui, options);
+        let ui_size = match &tlr {
+            Ok(egui::load::TexturePoll::Pending { .. }) => placeholder_size,
+            Ok(_) => image.calc_size(ui.available_size(), image_source_size),
+            Err(_) => placeholder_size,
+        };
 
-        ui.painter().rect_stroke(
-            response.rect,
-            corner_radius,
-            stroke,
-            egui::StrokeKind::Inside,
-        );
+        let (rect, response) = ui.allocate_exact_size(ui_size, egui::Sense::hover());
+        if ui.is_rect_visible(rect) {
+            match &tlr {
+                Ok(egui::load::TexturePoll::Ready { texture }) => {
+                    egui::paint_texture_at(ui.painter(), rect, image.image_options(), texture);
+                }
+                Ok(egui::load::TexturePoll::Pending { .. }) => {
+                    paint_image_placeholder(ui, rect, corner_radius, stroke);
+                }
+                Err(_) => {
+                    image.paint_at(ui, rect);
+                }
+            }
+
+            ui.painter().rect_stroke(
+                rect,
+                corner_radius,
+                stroke,
+                egui::StrokeKind::Inside,
+            );
+        }
 
         if !self.alt_text.is_empty() && options.show_alt_text_on_hover {
             response.on_hover_ui_at_pointer(|ui| {
@@ -265,6 +287,54 @@ impl Image {
                 }
             });
         }
+    }
+}
+
+fn image_placeholder_size(ui: &Ui, options: &CommonMarkOptions) -> egui::Vec2 {
+    let mut width = ui.max_rect().width();
+    if let Some(max_width) = options.max_image_width {
+        width = width.min(max_width as f32);
+    }
+    if let Some(default_width) = options.default_width {
+        width = width.max(default_width as f32);
+    }
+    if !width.is_finite() || width <= 0.0 {
+        width = 256.0;
+    }
+    let height = (width * 0.5).max(1.0);
+    egui::vec2(width, height)
+}
+
+fn paint_image_placeholder(
+    ui: &Ui,
+    rect: egui::Rect,
+    corner_radius: egui::CornerRadius,
+    stroke: egui::Stroke,
+) {
+    let fill = ui.visuals().widgets.noninteractive.bg_fill;
+    ui.painter().rect_filled(rect, corner_radius, fill);
+
+    let hatch_color = egui::Color32::from_rgba_unmultiplied(
+        stroke.color.r(),
+        stroke.color.g(),
+        stroke.color.b(),
+        80,
+    );
+    let hatch_stroke = egui::Stroke::new(1.0, hatch_color);
+    let inset = (corner_radius.average() * 0.5).max(2.0);
+    let hatch_rect = rect.shrink(inset);
+    if hatch_rect.width() <= 0.0 || hatch_rect.height() <= 0.0 {
+        return;
+    }
+
+    let painter = ui.painter().with_clip_rect(hatch_rect);
+    let spacing = 12.0;
+    let mut x = hatch_rect.left() - hatch_rect.height();
+    while x < hatch_rect.right() {
+        let start = egui::pos2(x, hatch_rect.top());
+        let end = egui::pos2(x + hatch_rect.height(), hatch_rect.bottom());
+        painter.line_segment([start, end], hatch_stroke);
+        x += spacing;
     }
 }
 

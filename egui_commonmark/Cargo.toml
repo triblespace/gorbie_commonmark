@@ -1,6 +1,7 @@
 [package]
 name = "gorbie-commonmark"
 authors = ["Erlend Walstad", "Jan-Paul Bultmann <jp@bultmann.eu>"]
+workspace = ".."
 
 version.workspace = true
 edition.workspace = true
