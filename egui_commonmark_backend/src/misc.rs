@@ -122,42 +122,45 @@ impl Style {
         let mut text = RichText::new(text);
 
         if let Some(level) = self.heading {
-            let max_height = ui
-                .style()
-                .text_styles
-                .get(&TextStyle::Heading)
-                .map_or(32.0, |d| d.size);
-            let min_height = ui
+            // Grid-aligned heading sizes for IosevkaGorbie
+            // (hhea ascent=965, descent=-215, line_gap=70, upm=1000):
+            //
+            //   29px font → 36px row (3 modules)
+            //   20px font → 24px row (2 modules)
+            //   15px body → 18px row (1.5 modules)
+            //
+            // H1–H2: 3-module tier. H3–H4: 2-module tier.
+            // H5–H6: body size, differentiated by weight.
+            let body_size = ui
                 .style()
                 .text_styles
                 .get(&TextStyle::Body)
-                .map_or(14.0, |d| d.size);
-            let diff = max_height - min_height;
+                .map_or(15.0, |d| d.size);
 
             match level {
+                // H1: large heading, bold
                 0 => {
-                    text = text.strong().heading();
+                    text = text.strong().size(29.0);
                 }
+                // H2: large heading, bold (same size as H1, distinguished contextually)
                 1 => {
-                    let size = min_height + diff * 0.835;
-                    text = text.strong().size(size);
+                    text = text.strong().size(29.0);
                 }
+                // H3: section heading, bold
                 2 => {
-                    let size = min_height + diff * 0.668;
-                    text = text.strong().size(size);
+                    text = text.strong().size(20.0);
                 }
+                // H4: section heading, regular weight
                 3 => {
-                    let size = min_height + diff * 0.501;
-                    text = text.strong().size(size);
+                    text = text.size(20.0);
                 }
+                // H5: body-size heading, bold
                 4 => {
-                    let size = min_height + diff * 0.334;
-                    text = text.size(size);
+                    text = text.strong().size(body_size);
                 }
-                // We only support 6 levels
+                // H6: body-size heading, regular
                 5.. => {
-                    let size = min_height + diff * 0.167;
-                    text = text.size(size);
+                    text = text.size(body_size);
                 }
             }
         }

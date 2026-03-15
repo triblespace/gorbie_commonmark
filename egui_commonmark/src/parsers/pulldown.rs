@@ -593,9 +593,21 @@ impl CommonMarkViewerInternal {
                 self.line.try_insert_start(ui);
             }
             pulldown_cmark::Tag::Heading { level, .. } => {
-                // Headings should always insert a newline even if it is at the start.
-                // Whether this is okay in all scenarios is a different question.
+                // Hierarchical pre-heading spacing: larger headings get more
+                // breathing room. Each newline contributes one item_spacing.y
+                // (12px = 1 module) of vertical gap in the wrapped layout.
+                // The extra newline only fires when this isn't the first element.
+                //   H1–H4 → 2 newlines (24px = 2 modules)
+                //   H5/H6 → 1 newline  (12px = 1 module, same as paragraph)
                 newline(ui);
+                match level {
+                    HeadingLevel::H1 | HeadingLevel::H2
+                    | HeadingLevel::H3 | HeadingLevel::H4 => {
+                        self.line.try_insert_start(ui);
+                    }
+                    _ => {}
+                }
+
                 self.text_style.heading = Some(match level {
                     HeadingLevel::H1 => 0,
                     HeadingLevel::H2 => 1,
