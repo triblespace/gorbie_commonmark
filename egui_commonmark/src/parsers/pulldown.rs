@@ -583,7 +583,7 @@ impl CommonMarkViewerInternal {
         } else if let Some(link) = &mut self.link {
             link.text.push(rich_text);
         } else {
-            ui.label(rich_text);
+            ui.add(egui::Label::new(rich_text).wrap());
         }
     }
 

@@ -130,7 +130,7 @@ pub fn code_block<'t>(
         .desired_width(max_width)
         // prevent trailing lines
         .desired_rows(1)
-        .frame(false)
+        .frame(egui::Frame::NONE)
         .show(ui);
 
     // Background color + frame (This is lost when TextEdit it not editable)
