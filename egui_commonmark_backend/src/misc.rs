@@ -275,12 +275,8 @@ impl Image {
                 }
             }
 
-            ui.painter().rect_stroke(
-                rect,
-                corner_radius,
-                stroke,
-                egui::StrokeKind::Inside,
-            );
+            ui.painter()
+                .rect_stroke(rect, corner_radius, stroke, egui::StrokeKind::Inside);
         }
 
         if !self.alt_text.is_empty() && options.show_alt_text_on_hover {

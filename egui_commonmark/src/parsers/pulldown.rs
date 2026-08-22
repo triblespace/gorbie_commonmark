@@ -601,8 +601,7 @@ impl CommonMarkViewerInternal {
                 //   H5/H6 → 1 newline  (12px = 1 module, same as paragraph)
                 newline(ui);
                 match level {
-                    HeadingLevel::H1 | HeadingLevel::H2
-                    | HeadingLevel::H3 | HeadingLevel::H4 => {
+                    HeadingLevel::H1 | HeadingLevel::H2 | HeadingLevel::H3 | HeadingLevel::H4 => {
                         self.line.try_insert_start(ui);
                     }
                     _ => {}
